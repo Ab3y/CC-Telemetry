@@ -549,4 +549,4 @@ docker compose up -d
 
 ## License
 
-MIT
+MIT — Free to use. See [LICENSE](./LICENSE). Created by [@Ab3y](https://github.com/Ab3y).

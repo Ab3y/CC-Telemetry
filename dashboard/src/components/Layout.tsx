@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import type { ViewLevel, TimeRange } from '../types';
+import React from 'react';
+import type { ViewLevel, TimeRange, NavPage } from '../types';
 import {
   LayoutDashboard, Users, Building2, Activity, Settings,
   Clock, Zap, Menu, X,
@@ -12,6 +12,8 @@ interface LayoutProps {
   onViewLevelChange: (v: ViewLevel) => void;
   timeRange: TimeRange;
   onTimeRangeChange: (t: TimeRange) => void;
+  activePage: NavPage;
+  onPageChange: (p: NavPage) => void;
 }
 
 const NAV_ITEMS = [
@@ -34,9 +36,8 @@ const TIME_RANGES: { value: TimeRange; label: string }[] = [
   { value: '30d', label: '30 Days' },
 ];
 
-export default function Layout({ children, viewLevel, onViewLevelChange, timeRange, onTimeRangeChange }: LayoutProps) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [activeNav, setActiveNav] = useState('dashboard');
+export default function Layout({ children, viewLevel, onViewLevelChange, timeRange, onTimeRangeChange, activePage, onPageChange }: LayoutProps) {
+  const [sidebarOpen, setSidebarOpen] = React.useState(false);
 
   return (
     <div className="flex h-screen overflow-hidden bg-background">
@@ -55,6 +56,7 @@ export default function Layout({ children, viewLevel, onViewLevelChange, timeRan
         <div className="flex h-14 items-center gap-2 border-b border-border px-4">
           <Zap size={20} className="text-accent" />
           <span className="text-sm font-bold text-text-primary">CC Telemetry</span>
+          <span className="rounded-full bg-accent/20 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-accent">Beta</span>
           <button className="ml-auto lg:hidden" onClick={() => setSidebarOpen(false)}>
             <X size={18} className="text-text-secondary" />
           </button>
@@ -63,10 +65,10 @@ export default function Layout({ children, viewLevel, onViewLevelChange, timeRan
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
-              onClick={() => setActiveNav(item.id)}
+              onClick={() => { onPageChange(item.id); setSidebarOpen(false); }}
               className={clsx(
                 'flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm transition-colors',
-                activeNav === item.id
+                activePage === item.id
                   ? 'bg-accent/10 text-accent'
                   : 'text-text-secondary hover:bg-surface-hover hover:text-text-primary'
               )}

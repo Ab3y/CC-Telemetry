@@ -51,6 +51,8 @@ const USERS = [
   { id: 'u22', name: 'victor.ross', email: 'victor.ross@acme.dev', teamIdx: 1 },
 ];
 
+export const TEAM_LIST = TEAMS.map((t) => t.name);
+
 function rand(min: number, max: number) {
   return Math.random() * (max - min) + min;
 }
