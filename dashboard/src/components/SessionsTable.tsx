@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import type { SessionMetrics } from '../types';
 import { Search, ChevronDown, ChevronUp, ChevronLeft, ChevronRight } from 'lucide-react';
 
@@ -95,9 +95,8 @@ export default function SessionsTable({ data }: SessionsTableProps) {
           </thead>
           <tbody className="divide-y divide-border">
             {paged.map((s) => (
-              <>
+              <React.Fragment key={s.sessionId}>
                 <tr
-                  key={s.sessionId}
                   className="cursor-pointer transition-colors hover:bg-surface-hover"
                   onClick={() => setExpandedId(expandedId === s.sessionId ? null : s.sessionId)}
                 >
@@ -133,7 +132,7 @@ export default function SessionsTable({ data }: SessionsTableProps) {
                     </td>
                   </tr>
                 )}
-              </>
+              </React.Fragment>
             ))}
           </tbody>
         </table>
