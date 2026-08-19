@@ -2,6 +2,8 @@
 
 A modern, responsive observability dashboard for monitoring [Claude Code](https://docs.anthropic.com/en/docs/claude-code) usage, costs, and productivity across individuals, teams, and organizations. Built on [OpenTelemetry](https://opentelemetry.io/) standards with a complete observability stack.
 
+> **Live demo:** [Open the Claude Code Telemetry Dashboard](https://ab3y.github.io/CC-Telemetry/)
+
 ![TypeScript](https://img.shields.io/badge/TypeScript-6.x-3178C6?logo=typescript&logoColor=white)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 ![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white)
